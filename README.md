@@ -11,4 +11,4 @@ Bot ini menggunakan algoritma Greedy untuk memilih langkah terbaik berdasarkan..
 2. Ketik: python src/main-bot/main.py (contoh)
 
 ### iv. Author
-- Nama Kamu (NIM)
+- Amel
