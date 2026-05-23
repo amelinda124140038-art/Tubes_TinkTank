@@ -1,0 +1,11 @@
+{
+  "name": "Adaptive bot",
+  "version": "1.0",
+  "authors": ["angel, nasywa, amel"],
+  "description": "Bot greedy yang mengubah pola movement dan attack berdasarkan jumlah energi. Menggunakan mode agresif, zig-zag, dan chaos movement untuk menyesuaikan kondisi pertandingan.",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}
+

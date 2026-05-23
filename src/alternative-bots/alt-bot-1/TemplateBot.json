@@ -1,0 +1,10 @@
+{
+  "name": "Survival bot",
+  "version": "1.0",
+  "authors": ["angel, nasywa, amel"],
+  "description": "Bot greedy yang berfokus bertahan hidup lebih lama dengan movement zig-zag dan positioning aman di arena sambil tetap menyerang berdasarkan jarak dan kondisi musuh.",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}

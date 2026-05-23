@@ -1,0 +1,10 @@
+{
+  "name": "Flanker bot",
+  "version": "1.0",
+  "authors": ["angel, nasywa, amel"],
+  "description": "Bot greedy yang fokus menyerang dari samping dengan movement orbit dan flank. Menggunakan positioning serta predictive shooting sederhana untuk menghindari serangan frontal.",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}
