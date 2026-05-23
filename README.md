@@ -1,3 +1,6 @@
+***
+
+```markdown
 # 🤖 Tubes_TinkTank - Robocode Tank Royale
 
 Repository ini berisi kode sumber, dokumentasi, dan panduan lengkap untuk Tugas Besar Mata Kuliah IF25-21013 Strategi Algoritma di Institut Teknologi Sumatera (ITERA) Semester Genap Tahun 2026/2027. Proyek ini mengimplementasikan berbagai variasi **Algoritma Greedy** dalam membangun kecerdasan buatan (*behavior*) pada bot pertempuran simulasi otonom Robocode Tank Royale.
@@ -12,18 +15,15 @@ Kelompok **TinkTank**:
 
 ## 🧠 Penjelasan Singkat Algoritma Greedy Per Bot
 
-Proyek ini mengeksplorasi pembentukan fungsi seleksi (*heuristic*) yang dinamis dan adaptif guna mengoptimalkan perolehan skor pertempuran (*Bullet Damage* dan *Survival Score*). Repository ini memuat 4 variasi bot dengan taktik berbasis algoritma *greedy* yang berbeda:
+Proyek ini mengeksplorasi pembentukan fungsi seleksi (*heuristic*) yang dinamis dan adaptif guna mengoptimalkan perolehan skor pertempuran (*Bullet Damage* dan *Survival Score*). Repository ini memuat 4 variasi bot dengan taktik berbasis algoritma *greedy* sebagai berikut:
 
-1. **Main Bot (Opportunist Bot - Strategi Terpilih):** Menggunakan strategi *greedy* berbasis informasi global yaitu jumlah musuh yang masih hidup di arena (`aliveEnemies`). Keputusan transisi aksi dibagi secara *greedy* menjadi 3 fase dinamis:
-   * *Fase Awal (> 5 musuh):* Bermain sangat defensif (`WaitingMode`) di area aman untuk menghemat energi.
-   * *Fase Transisi (2-5 musuh):* Menjaga jarak ideal (`PositioningMode`) untuk mencuri kesempatan menembak musuh yang sekarat.
-   * *Fase Duel Akhir (1 musuh):* Berubah total menjadi sangat agresif (`HunterMode`) untuk mengeleminasi musuh terakhir demi mengamankan bonus kemenangan (*Survival Score*).
+1. **Main Bot (Opportunist Bot - Strategi Terpilih):** Menggunakan strategi *greedy* berbasis informasi global jumlah musuh yang masih hidup di arena (`aliveEnemies`). Keputusan transisi aksi dibagi secara *greedy* menjadi 3 fase dinamis: *Waiting Mode* (saat musuh ramai untuk hemat energi), *Positioning Mode* (menjaga jarak aman), dan *Hunter Mode* (agresif berburu saat sisa 1 musuh untuk mengunci bonus kemenangan).
 
-2. **Alternatif Bot 1 (Cornering Bot):** Menggunakan strategi *greedy* berbasis posisi spasial statis. Bot secara instan bergerak mengunci koordinat sudut (60, 60) sejak awal laga untuk meminimalkan sudut datangnya serangan musuh, lalu mengeksekusi tembakan beruntun secara *greedy* pada musuh terdekat dari sudut tersebut.
+2. **Alternatif Bot 1 (Alt 1 - Survival Bot):** Menggunakan strategi *greedy* yang berorientasi penuh pada ketahanan hidup (*survival rate*). Elemen *greedy* diterapkan dengan mencari koordinat sudut terdekat dari posisi awal bot secara instan, lalu mengunci posisi di sudut tersebut. Hal ini dilakukan demi membatasi sudut serang musuh (hanya dari arah depan), sehingga bot bisa bertahan hidup lebih lama sambil menembak musuh secara konstan.
 
-3. **Alternatif Bot 2 (Self-Energy Bot):** Mengambil keputusan taktis pergerakan dan daya tembak secara *greedy* dengan mengevaluasi sisa kapasitas energinya sendiri pada setiap putaran (*turn*). Jika energi tinggi, daya tembak dimaksimalkan; jika energi kritis, bot memprioritaskan pergerakan menghindar (*evading*) untuk bertahan hidup lebih lama.
+3. **Alternatif Bot 2 (Alt 2 - Adaptive Bot):** Menggunakan strategi *greedy* berbasis kondisi internal, di mana bot secara adaptif mengevaluasi sisa kapasitas energinya sendiri (*Self-Energy*) pada setiap *turn*. Pilihan aksi diambil secara *greedy*: jika energi melimpah, bot akan meningkatkan daya tembak maksimal (*ofensif*); namun jika energi berada di batas kritis, bot langsung mengubah prioritas aksinya untuk fokus menghindar dan menjauh (*defensif*).
 
-4. **Alternatif Bot 3 (Flanking & Predictive Shoot Bot):** Berorientasi penuh pada strategi ofensif *greedy*. Bot menggunakan perhitungan fisika peluru untuk memprediksi koordinat masa depan musuh berdasarkan arah (*heading*) dan kecepatan (*speed*) terkini demi menghasilkan *hit-rate* tembakan tertinggi di setiap kesempatan.
+4. **Alternatif Bot 3 (Alt 3 - Flanker Bot):** Menggunakan strategi *greedy* berbasis manuver spasial bergerak (*flanking*). Bot ini secara *greedy* akan selalu mencari celah kelengahan musuh dengan bergerak memutari sisi terluar radar lawan (*flanking trajectory*). Dipadukan dengan *Predictive Shooting*, bot ini akan mengeksekusi tembakan di titik prediksi masa depan musuh demi menghasilkan daya rusak (*bullet damage*) yang maksimal.
 
 ---
 
