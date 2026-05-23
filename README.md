@@ -1,63 +1,43 @@
-# 🤖 Project Robocode Tank Royale - Greedy Bot Group
+# 🤖 Tubes_TinkTank - Robocode Tank Royale
 
-Proyek ini dibuat untuk memenuhi tugas besar/praktikum mata kuliah dengan mengimplementasikan **Algoritma Greedy** pada komponen kecerdasan buatan (*AI*) dari bot tank di simulator **Robocode Tank Royale**. 
+[cite_start]Repository ini berisi kode sumber dan dokumentasi untuk Tugas Besar Mata Kuliah Strategi Algoritma di Institut Teknologi Sumatera (ITERA)[cite: 1, 4]. [cite_start]Proyek ini mengimplementasikan **Algoritma Greedy** dalam membangun *behavior* kecerdasan buatan pada bot pertempuran Robocode Tank Royale[cite: 1, 5].
 
-Repositori ini memuat **1 Bot Utama Terbaik** yang paling optimal dan siap tanding, serta **3 Bot Alternatif** yang dikembangkan sebagai bentuk eksperimen variasi strategi.
-
----
-
-## 👨‍💻 Author (Identitas Pembuat)
-* **Nama Lengkap** : [Nama Anda]
-* **NIM** : [NIM Anda]
-* **Kelas / Paralel** : [Kelas Anda, misal: RC / A]
-* **Program Studi** : [Jurusan Anda, misal: Teknik Informatika]
+## 👥 Anggota Kelompok (TinkTank)
+* [cite_start]**Nasywa Putri Salsabila** (124140005) 
+* [cite_start]**Angelica Putri** (124140131) 
+* [cite_start]**Amelinda Simanjuntak** (124140038) 
 
 ---
 
-## 🎯 Penjelasan Singkat Algoritma Greedy Per Bot
+## 🧠 Penjelasan Singkat Algoritma Greedy
 
-Secara umum, algoritma *Greedy* mengambil keputusan terbaik secara lokal pada setiap *tick* (detik) permainan tanpa memikirkan dampak jangka panjang, dengan harapan kombinasi keputusan lokal ini membawa pada kondisi optimal global (kemenangan). 
+[cite_start]Proyek ini mengeksplorasi pembentukan fungsi seleksi (*heuristic*) yang adaptif untuk mengoptimalkan perolehan skor pertempuran (seperti *Bullet Damage* dan *Survival Score*)[cite: 31, 37, 38]. [cite_start]Repository ini memuat 4 variasi bot dengan strategi *greedy* yang berbeda[cite: 34]:
 
-Berikut adalah detail bagaimana sifat *Greedy* diterapkan pada masing-masing bot yang dibuat:
-
-### 🏆 1. ApexGreedyBot (Bot Utama - Terbaik)
-Bot ini dipilih sebagai versi terbaik karena menggabungkan efisiensi pergerakan dan efisiensi energi (*Energy Economy*).
-* **Greedy Target Acquisition:** Radar mendeteksi semua musuh di arena, namun sistem secara serakah memilih dan mengunci musuh yang memiliki **jarak terdekat** (`Distance` terkecil) untuk memastikan akurasi tembakan yang maksimal.
-* **Greedy Firepower (Daya Tembak Dinamis):** Bot menerapkan prinsip ketamakan energi. Besar daya tembak disesuaikan secara otomatis dengan rumus matematika berbasis jarak ($D$):
-  $$\text{Firepower} = \min\left(\frac{400}{D}, 3.0\right)$$
-  Jika musuh sangat dekat, bot melepaskan tembakan maksimal (`3.0`). Jika musuh menjauh, daya tembak diturunkan secara serakah agar energi bot tidak terbuang sia-sia apabila peluru meleset.
-* **Greedy Evasion:** Bot selalu bergerak tegak lurus ($90^\circ$) terhadap posisi target terdekat untuk melakukan teknik kecohan berkendara (*strafing*) demi menghindari peluru lawan secara instan.
-
-### 🤖 2. ExecutionerBot (Alternatif 1)
-* **Greedy Target (HP Terendah):** Berbeda dengan bot utama, bot ini mendasarkan sifat ketamakannya pada darah lawan. Radar akan memindai seluruh arena, lalu secara serakah mengunci dan mengejar musuh yang memiliki **sisa HP/Energy paling sedikit**. Strategi lokalnya adalah mengeliminasi musuh yang sekarat terlebih dahulu agar jumlah kompetitor di dalam arena berkurang secepat mungkin.
-
-### 🤖 3. ShadowBot (Alternatif 2)
-* **Greedy Proximity Zone:** Bot ini bersifat pasif-agresif dan sangat serakah terhadap ruang aman. Bot akan mengabaikan seluruh musuh yang berada di jarak jauh. Namun, begitu ada musuh yang melanggar batas zona aman fisik bot (radius di bawah 300 unit), bot akan langsung mengarahkan meriam dan menembak dengan daya penuh (`3.0`) secara agresif demi mengusir ancaman terdekat.
-
-### 🤖 4. CowardlyPredator (Alternatif 3)
-* **Greedy State berdasarkan Kalkulasi Energi:** Bot ini mengambil keputusan instan berdasarkan perbandingan status HP. Jika energi musuh terpindai lebih besar dari energinya sendiri, bot akan langsung berbalik arah $180^\circ$ dan kabur menjauh (Greedy Survival). Sebaliknya, jika energi musuh lebih kecil, bot akan berubah menjadi predator yang memburu, menembak, dan menabrak tank tersebut secara brutal.
+1. [cite_start]**Main Bot (Opportunist Bot - Strategi Terpilih):** Menggunakan strategi *greedy* berbasis informasi global yaitu jumlah musuh yang masih hidup di arena (`aliveEnemies`)[cite: 109, 137]. [cite_start]Bot ini membagi aksinya menjadi 3 fase dinamis[cite: 139, 158]:
+   * [cite_start]*Fase Awal (> 5 musuh):* Bermain defensif (`WaitingMode`) untuk menghemat energi[cite: 110].
+   * [cite_start]*Fase Transisi (2-5 musuh):* Menjaga jarak ideal (`PositioningMode`)[cite: 111].
+   * [cite_start]*Fase Duel Akhir (1 musuh):* Menjadi sangat agresif (`HunterMode`) untuk mengamankan bonus kemenangan[cite: 112].
+2. [cite_start]**Alternatif Bot 1 (Cornering Bot):** Menggunakan strategi *greedy* statis, langsung bergerak mengunci koordinat sudut (60, 60) sejak awal laga demi meminimalkan arah datangnya serangan musuh[cite: 115, 116, 141].
+3. [cite_start]**Alternatif Bot 2 (Self-Energy Bot):** Mengambil keputusan taktis pergerakan dan daya tembak secara *greedy* dengan mengevaluasi sisa kapasitas energinya sendiri pada setiap putaran[cite: 123].
+4. [cite_start]**Alternatif Bot 3 (Flanking & Predictive Shoot Bot):** Berorientasi penuh pada strategi ofensif menggunakan perhitungan fisika peluru untuk memprediksi koordinat masa depan musuh berdasarkan arah dan kecepatannya[cite: 129, 134].
 
 ---
 
-## 🛠️ Requirement Program & Instalasi
+## 🛠️ Requirements & Instalasi
 
-Agar program ini dapat berjalan dengan lancar tanpa kendala *library*, pastikan perangkat penguji telah menginstal spesifikasi berikut:
-1. **.NET SDK 8.0** (atau versi di atasnya) sebagai compiler dan runtime bahasa C#.
-2. **Robocode Tank Royale GUI Application** (Aplikasi simulator grafis utama game Robocode).
-3. **Java Runtime Environment (JRE) atau JDK 11+** (Hanya diperlukan sebagai syarat utama untuk menjalankan aplikasi master/GUI Robocode Tank Royale itu sendiri).
+[cite_start]Sebelum menjalankan bot ini, pastikan komputer Anda telah memenuhi persyaratan berikut[cite: 367]:
+
+1. [cite_start]**.NET SDK:** Install .NET SDK versi terbaru (direkomendasikan versi yang mendukung C# terbaru)[cite: 36].
+2. [cite_start]**Java Runtime Environment (JRE):** Diperlukan untuk mengeksekusi aplikasi GUI Java dari Robocode Tank Royale[cite: 371, 372].
+3. [cite_start]**Robocode Tank Royale GUI:** Unduh rilis GUI game engine (dalam proyek ini menggunakan basis referensi package versi `0.30.0`)[cite: 95, 371].
 
 ---
 
-## 💻 Cara Melakukan Compile dan Menjalankan Program
+## 💻 Panduan Compile & Menjalankan Bot
 
-Robocode Tank Royale menggunakan arsitektur **Client-Server**. Aplikasi GUI bertindak sebagai *Server* (lapangan), sedangkan kode C# bertindak sebagai *Client* (otak bot). Oleh karena itu, urutan langkah di bawah ini **harus dilakukan secara berurutan**:
+[cite_start]Ikuti langkah-langkah di bawah ini untuk meng-compile kode sumber dan menerjunkan bot ke arena pertempuran[cite: 367, 371, 372]:
 
-### Langkah 1: Jalankan Game Simulator (Server)
-1. Buka aplikasi **Robocode Tank Royale GUI** di komputer Anda.
-2. Pastikan server lokal aplikasi telah berjalan (secara default menggunakan port `localhost:7654`). Biarkan aplikasi ini tetap terbuka di latar belakang.
-
-### Langkah 2: Masuk ke Folder dan Lakukan Kompilasi (*Build*)
-1. Buka Terminal, Command Prompt, atau PowerShell di komputer Anda.
-2. Arahkan direktori kerja ke dalam folder `src` tempat kode sumber berada:
-   ```bash
-   cd src
+### 1. Compile Proyek Bot via Terminal
+[cite_start]Masuk ke direktori folder bot yang ingin Anda gunakan (misalnya `src/main-bot/`), lalu jalankan perintah berikut untuk melakukan *build* proyek C#[cite: 36]:
+```bash
+dotnet build
