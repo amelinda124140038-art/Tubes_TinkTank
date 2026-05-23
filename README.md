@@ -1,6 +1,3 @@
-***
-
-```markdown
 # 🤖 Tubes_TinkTank - Robocode Tank Royale
 
 Repository ini berisi kode sumber, dokumentasi, dan panduan lengkap untuk Tugas Besar Mata Kuliah IF25-21013 Strategi Algoritma di Institut Teknologi Sumatera (ITERA) Semester Genap Tahun 2026/2027. Proyek ini mengimplementasikan berbagai variasi **Algoritma Greedy** dalam membangun kecerdasan buatan (*behavior*) pada bot pertempuran simulasi otonom Robocode Tank Royale.
