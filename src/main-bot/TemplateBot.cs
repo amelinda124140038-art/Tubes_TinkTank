@@ -27,13 +27,13 @@ public class TemplateBot : Bot
 
     public override void Run()
     {
-        BodyColor = Color.FromArgb(0x11, 0x11, 0x11);
-        TurretColor = Color.FromArgb(0xFF, 0x66, 0xCC);
-        RadarColor = Color.FromArgb(0x66, 0xCC, 0xFF);
-        BulletColor = Color.FromArgb(0xFF, 0x99, 0xDD);
-        GunColor = Color.FromArgb(0xCC, 0x33, 0x99);
-        ScanColor = Color.FromArgb(0x99, 0xDD, 0xFF);
-        TracksColor = Color.FromArgb(0x33, 0x22, 0x33);
+       BodyColor = Color.Black;
+       TurretColor = Color.HotPink;
+       RadarColor = Color.DeepSkyBlue;
+       BulletColor = Color.Pink;
+       GunColor = Color.MediumVioletRed;
+       ScanColor = Color.LightSkyBlue;
+       TracksColor = Color.DarkSlateGray;
 
         while (IsRunning)
         {
